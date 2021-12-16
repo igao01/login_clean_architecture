@@ -18,15 +18,15 @@ main() {
   final usecase = LoginImpl(repository, connectivity);
 
   test("login success", () async {
-    final user = User(uid: 'qwerty', email: 'joao@email.com');
+    const user = User(uid: 'qwerty', email: 'joao@email.com');
 
     when(() => connectivity.isOffline()).thenAnswer((_) async => false);
     when(() => repository.executeLogin('joao@email.com', '123456'))
-        .thenAnswer((_) async => Right(user));
+        .thenAnswer((_) async => const Right(user));
 
     final result = await usecase('joao@email.com', '123456');
 
-    expect(result, Right(user));
+    expect(result, const Right(user));
     expect(result.fold((l) => id, (r) => r.uid), 'qwerty');
     expect(result.fold((l) => id, (r) => r.email), 'joao@email.com');
   });

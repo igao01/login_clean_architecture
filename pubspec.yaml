@@ -41,7 +41,7 @@ dependencies:
   equatable: ^2.0.3
   connectivity: ^3.0.6
   mocktail: ^0.2.0
-  http: ^0.13.4
+  dio: ^4.0.4
 
 dev_dependencies:
   flutter_test:
