@@ -2,13 +2,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'app_routes.dart';
 import 'modules/login/presenter/login_page.dart';
-import 'modules/login/presenter/login_store.dart';
 
 class AppModule extends Module {
   @override
-  List<Bind> get binds => [
-        $LoginStore,
-      ];
+  List<Bind> get binds => [];
 
   @override
   List<ModularRoute> get routes => [

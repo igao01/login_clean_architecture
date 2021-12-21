@@ -9,7 +9,7 @@ import 'package:login_clean_architecture/app/modules/login/domain/repositories/l
 
 part 'login.g.dart';
 
-abstract class Login {
+mixin Login {
   Future<Either<Failure, User>> call(String email, String password);
 }
 

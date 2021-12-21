@@ -7,7 +7,7 @@ part of 'login_store.dart';
 // **************************************************************************
 
 final $LoginStore = BindInject(
-  (i) => LoginStore(),
+  (i) => LoginStore(i<Login>()),
   isSingleton: false,
   isLazy: true,
 );
@@ -18,8 +18,8 @@ final $LoginStore = BindInject(
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$LoginStore on LoginStoreBase, Store {
-  final _$stateAtom = Atom(name: 'LoginStoreBase.state');
+mixin _$LoginStore on _LoginStoreBase, Store {
+  final _$stateAtom = Atom(name: '_LoginStoreBase.state');
 
   @override
   LoginState get state {
@@ -34,7 +34,7 @@ mixin _$LoginStore on LoginStoreBase, Store {
     });
   }
 
-  final _$emailTextAtom = Atom(name: 'LoginStoreBase.emailText');
+  final _$emailTextAtom = Atom(name: '_LoginStoreBase.emailText');
 
   @override
   String get emailText {
@@ -49,7 +49,7 @@ mixin _$LoginStore on LoginStoreBase, Store {
     });
   }
 
-  final _$passwordTextAtom = Atom(name: 'LoginStoreBase.passwordText');
+  final _$passwordTextAtom = Atom(name: '_LoginStoreBase.passwordText');
 
   @override
   String get passwordText {
@@ -64,46 +64,46 @@ mixin _$LoginStore on LoginStoreBase, Store {
     });
   }
 
-  final _$executeLoginAsyncAction = AsyncAction('LoginStoreBase.executeLogin');
+  final _$executeLoginAsyncAction = AsyncAction('_LoginStoreBase.executeLogin');
 
   @override
   Future<LoginState> executeLogin() {
     return _$executeLoginAsyncAction.run(() => super.executeLogin());
   }
 
-  final _$LoginStoreBaseActionController =
-      ActionController(name: 'LoginStoreBase');
+  final _$_LoginStoreBaseActionController =
+      ActionController(name: '_LoginStoreBase');
 
   @override
   dynamic setState(LoginState value) {
-    final _$actionInfo = _$LoginStoreBaseActionController.startAction(
-        name: 'LoginStoreBase.setState');
+    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
+        name: '_LoginStoreBase.setState');
     try {
       return super.setState(value);
     } finally {
-      _$LoginStoreBaseActionController.endAction(_$actionInfo);
+      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setEmailText(String value) {
-    final _$actionInfo = _$LoginStoreBaseActionController.startAction(
-        name: 'LoginStoreBase.setEmailText');
+    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
+        name: '_LoginStoreBase.setEmailText');
     try {
       return super.setEmailText(value);
     } finally {
-      _$LoginStoreBaseActionController.endAction(_$actionInfo);
+      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setPasswordText(String value) {
-    final _$actionInfo = _$LoginStoreBaseActionController.startAction(
-        name: 'LoginStoreBase.setPasswordText');
+    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
+        name: '_LoginStoreBase.setPasswordText');
     try {
       return super.setPasswordText(value);
     } finally {
-      _$LoginStoreBaseActionController.endAction(_$actionInfo);
+      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

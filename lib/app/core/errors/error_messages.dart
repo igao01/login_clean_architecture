@@ -4,4 +4,5 @@ class Messages {
   static String get invalidPassword =>
       "A senha deve ter no mínimo 6 caracteres";
   static String get loginFail => "Falha ao logar";
+  static String get unknowError => "Ocorreu um erro desconhecido";
 }

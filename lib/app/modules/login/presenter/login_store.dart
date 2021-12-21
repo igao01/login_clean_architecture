@@ -6,10 +6,18 @@ import 'package:mobx/mobx.dart';
 part 'login_store.g.dart';
 
 @Injectable(singleton: false)
-class LoginStore = LoginStoreBase with _$LoginStore;
+class LoginStore = _LoginStoreBase with _$LoginStore;
 
-abstract class LoginStoreBase with Store {
-  Login? login;
+abstract class _LoginStoreBase with Store {
+  final Login login;
+
+/*
+  Esta dependência não está sendo reconhecida 
+  na execução real do código,
+  porem é reconhecida ao utilizar Mocks
+  durante os testes
+*/
+  _LoginStoreBase(this.login);
 
   @observable
   LoginState state = const StartState();
@@ -32,7 +40,7 @@ abstract class LoginStoreBase with Store {
   @action
   Future<LoginState> executeLogin() async {
     setState(const LoadingState());
-    final result = await login!(emailText, passwordText);
+    final result = await login(emailText, passwordText);
     return result.fold((l) => ErrorState(l), (r) => SuccessState(r));
   }
 }
