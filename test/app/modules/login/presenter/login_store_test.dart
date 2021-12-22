@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:login_clean_architecture/app/core/errors/error_messages.dart';
 import 'package:login_clean_architecture/app/modules/login/domain/entities/user.dart';
 import 'package:login_clean_architecture/app/modules/login/domain/errors/errors.dart';
 import 'package:login_clean_architecture/app/modules/login/domain/usecases/login.dart';
@@ -25,12 +26,37 @@ main() {
   });
 
   test('Must to return SuccesState', () async {
-    final user = User(uid: "qwerty");
+    const user = User(uid: "qwerty");
 
-    when(() => login.call('', '')).thenAnswer((_) async => Right(user));
+    when(() => login.call('', '')).thenAnswer((_) async => const Right(user));
 
     final result = await store.executeLogin();
 
     expect(result, isA<SuccessState>());
+  });
+
+  test('valid email', () {
+    final result = store.emailValidator('email@valido');
+    expect(result, null);
+  });
+
+  test('short email', () {
+    final result = store.emailValidator('ab@');
+    expect(result, Messages.invalidEmail);
+  });
+
+  test('email without @', () {
+    final result = store.emailValidator('emailtest');
+    expect(result, Messages.invalidEmail);
+  });
+
+  test('valid password', () {
+    final result = store.passwordValidator('validpassword');
+    expect(result, null);
+  });
+
+  test('short password', () {
+    final result = store.passwordValidator('pass');
+    expect(result, Messages.invalidPassword);
   });
 }

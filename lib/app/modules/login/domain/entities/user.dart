@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
+@immutable
 class User extends Equatable {
   final String? uid;
   final String? name;

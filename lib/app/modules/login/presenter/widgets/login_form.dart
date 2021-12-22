@@ -13,6 +13,8 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends ModularState<LoginForm, LoginStore> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -24,27 +26,36 @@ class _LoginFormState extends ModularState<LoginForm, LoginStore> {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
-              TextField(
+              TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'E-mail',
                 ),
                 keyboardType: TextInputType.emailAddress,
-                onSubmitted: controller.setEmailText,
+                onFieldSubmitted: controller.setEmailText,
+                validator: controller.emailValidator,
               ),
-              TextField(
+              TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Senha',
                 ),
                 keyboardType: TextInputType.text,
                 obscureText: true,
-                onSubmitted: controller.setPasswordText,
+                onFieldSubmitted: controller.setPasswordText,
+                validator: controller.passwordValidator,
               ),
               const SizedBox(height: 24),
               ElevatedButton(
                 child: const Text('ENTRAR'),
-                onPressed: controller.executeLogin,
+                onPressed: () {
+                  final isValid = _formKey.currentState?.validate() ?? false;
+
+                  if (!isValid) return;
+
+                  controller.executeLogin();
+                },
                 style: ElevatedButton.styleFrom(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 60, vertical: 12),

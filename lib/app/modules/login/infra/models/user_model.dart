@@ -1,13 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:login_clean_architecture/app/modules/login/domain/entities/user.dart';
 
+@immutable
 class UserModel extends User {
-  String? uid;
-  String? name;
-  String? email;
+  final String? uid;
+  final String? name;
+  final String? email;
 
-  UserModel({this.uid, this.name, this.email});
+  const UserModel({this.uid, this.name, this.email});
 
   Map<String, dynamic> toMap() {
     return {

@@ -12,12 +12,12 @@ main() {
   final repository = LoginRepositoryImpl(datasource);
 
   test("login success", () async {
-    final user = UserModel(uid: 'qwerty');
+    const user = UserModel(uid: 'qwerty');
     when(() => datasource.executeLogin('', '')).thenAnswer((_) async => user);
 
     final result = await repository.executeLogin('', '');
 
-    expect(result, Right(user));
+    expect(result, const Right(user));
     expect(result.fold((l) => id, (r) => r.uid), 'qwerty');
   });
 }

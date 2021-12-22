@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:login_clean_architecture/app/core/errors/error_messages.dart';
 import 'package:login_clean_architecture/app/modules/login/domain/usecases/login.dart';
 import 'package:login_clean_architecture/app/modules/login/presenter/states/login_state.dart';
 import 'package:mobx/mobx.dart';
@@ -16,6 +17,9 @@ abstract class _LoginStoreBase with Store {
   na execução real do código,
   porem é reconhecida ao utilizar Mocks
   durante os testes
+
+  Erro disparado
+  BindNotFoundException (BindNotFoundException: LoginStore not found.
 */
   _LoginStoreBase(this.login);
 
@@ -42,5 +46,19 @@ abstract class _LoginStoreBase with Store {
     setState(const LoadingState());
     final result = await login(emailText, passwordText);
     return result.fold((l) => ErrorState(l), (r) => SuccessState(r));
+  }
+
+  String? emailValidator(String? email) {
+    final _email = email ?? '';
+    if (!_email.contains('@') || _email.trim().length < 4) {
+      return Messages.invalidEmail;
+    }
+  }
+
+  String? passwordValidator(String? password) {
+    final _password = password ?? '';
+    if (_password.length < 6) {
+      return Messages.invalidPassword;
+    }
   }
 }
